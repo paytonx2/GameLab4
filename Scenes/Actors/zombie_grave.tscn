@@ -1,0 +1,39 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Actors/enemy_spawn.gd" id="1_y8nb2"]
+[ext_resource type="PackedScene" path="res://Scenes/Actors/zombie.tscn" id="2_cjkpn"]
+[ext_resource type="Texture2D" path="res://Assets/Spritesheet/enemy.png" id="3_v60q4"]
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/decor/tomb_round.png" id="4_ho4un"]
+
+[node name="ZombieGrave" type="Node2D" unique_id=1463539825]
+script = ExtResource("1_y8nb2")
+enemy_scenes = Array[PackedScene]([ExtResource("2_cjkpn")])
+speed_range = Array[int]([40, 55, 65])
+respawn_time = Array[int]([6, 9])
+
+[node name="Timer" type="Timer" parent="." unique_id=1818601661]
+autostart = true
+
+[node name="icon" type="Sprite2D" parent="." unique_id=55740017]
+position = Vector2(0, -19)
+texture = ExtResource("3_v60q4")
+
+[node name="Tomb" type="Sprite2D" parent="." unique_id=1044367180]
+texture = ExtResource("4_ho4un")
+offset = Vector2(0, -26)
+
+[node name="Miasma" type="CPUParticles2D" parent="." unique_id=1866074370]
+amount = 6
+lifetime = 1.2
+emission_shape = 3
+emission_rect_extents = Vector2(20, 2)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 20)
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0.5, 0.9, 0.4, 0.6)
+
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

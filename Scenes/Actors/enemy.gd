@@ -465,7 +465,7 @@ func die() -> void:
 	if has_node("ProgressBar"):
 		$ProgressBar.visible = false
 	if has_node("CollisionShape2D"):
-		$CollisionShape2D.disabled = true
+		$CollisionShape2D.set_deferred("disabled", true)
 	if has_node("Sprite"):
 		$Sprite.hide()
 	if has_node("DeathParticles"):

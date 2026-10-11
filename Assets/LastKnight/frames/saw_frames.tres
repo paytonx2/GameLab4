@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/props/saw.png" id="1_0rimi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rj1o"]
+atlas = ExtResource("1_0rimi")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlvjc"]
+atlas = ExtResource("1_0rimi")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uek36"]
+atlas = ExtResource("1_0rimi")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wsq1"]
+atlas = ExtResource("1_0rimi")
+region = Rect2(192, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rj1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlvjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uek36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wsq1")
+}],
+"loop": 1,
+"name": &"spin",
+"speed": 20.0
+}]

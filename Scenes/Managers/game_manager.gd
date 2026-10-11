@@ -12,6 +12,18 @@ var sfx_on = true
 var music_on = true
 
 var player :Player = null
+
+# The Last Knight: level list (used by Game Over -> retry and by the HUD)
+const LEVELS = [
+	"res://Scenes/Levels/level_01.tscn",
+	"res://Scenes/Levels/level_02.tscn",
+	"res://Scenes/Levels/level_03.tscn",
+	"res://Scenes/Levels/level_04.tscn",
+]
+
+# Power-ups (seconds left). Read by Player every frame.
+var speed_boost_time : float = 0.0
+var jump_boost_time : float = 0.0
 var current_level : String = "res://Scenes/Levels/level_01.tscn"
 var save_path := "user://game.save"
 var save_player_position = Vector2.ZERO
@@ -19,6 +31,20 @@ var player_stats = Stat.new()
 
 func _ready() -> void:
 	restart()
+
+func _process(delta: float) -> void:
+	speed_boost_time = max(0.0, speed_boost_time - delta)
+	jump_boost_time = max(0.0, jump_boost_time - delta)
+
+func level_index() -> int:
+	var tree = get_tree()
+	if tree.current_scene == null:
+		return 0
+	return LEVELS.find(tree.current_scene.scene_file_path)
+
+func add_coin(v=1):
+	player_stats.data_add("coins", v)
+	add_score(v)
 	
 func get_stat(key:String,default=0):
 	return player_stats.data_get(key,default)
@@ -44,10 +70,18 @@ func restart():
 	player_stats.data_set("coins",0)
 	player_stats.data_set("killed_enemy",0)
 	save_player_position = Vector2.ZERO
+	speed_boost_time = 0.0
+	jump_boost_time = 0.0
 
+
+var dying := false
 
 func damage(val=1):
+	if dying:
+		return
 	var hp = player_stats.data_add("hp",-val)
+	if player != null:
+		player.hurt_feedback()
 	if hp <=0 :
 		death()
 
@@ -64,10 +98,18 @@ func add_life():
 	player_stats.data_add("life",1)
 
 func death():
+	if dying:
+		return
+	dying = true
+	var left = player_stats.data_add("life",-1)
 	if player != null:
-		await player.death_tween()
-	if player_stats.data_add("life",-1) <= 0:
+		await player.death_tween(left <= 0)
+	dying = false
+	if left <= 0:
+		current_level = get_tree().current_scene.scene_file_path
 		get_tree().change_scene_to_file("res://Scenes/Levels/game_over.tscn")
+	else:
+		player_stats.data_set("hp", player_stats.data_get("hp_max",100))
 
 func save_option():
 	var file = FileAccess.open("user://option.json", FileAccess.WRITE)

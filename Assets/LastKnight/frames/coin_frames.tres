@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/props/coin.png" id="1_ujwsb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_268ey"]
+atlas = ExtResource("1_ujwsb")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syf0g"]
+atlas = ExtResource("1_ujwsb")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckwhb"]
+atlas = ExtResource("1_ujwsb")
+region = Rect2(72, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qklqj"]
+atlas = ExtResource("1_ujwsb")
+region = Rect2(108, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kh5b"]
+atlas = ExtResource("1_ujwsb")
+region = Rect2(144, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4n43u"]
+atlas = ExtResource("1_ujwsb")
+region = Rect2(180, 0, 36, 36)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_268ey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syf0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckwhb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qklqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kh5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4n43u")
+}],
+"loop": 1,
+"name": &"spin",
+"speed": 10.0
+}]

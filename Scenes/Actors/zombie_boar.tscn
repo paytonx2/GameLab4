@@ -1,0 +1,194 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Actors/zombie.gd" id="1_nq777"]
+[ext_resource type="SpriteFrames" path="res://Assets/LastKnight/frames/boar_frames.tres" id="2_owlwn"]
+[ext_resource type="AudioStream" path="res://Assets/Sound/FX/explosion.wav" id="3_6wa6d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ugr2j"]
+radius = 18.0
+height = 40.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1lopf"]
+radius = 22.0
+height = 46.0
+
+[sub_resource type="Curve" id="Curve_yvw6o"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.246032, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_wxnld"]
+offsets = PackedFloat32Array(0.25, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cwx2"]
+bg_color = Color(0.16862746, 0.54901963, 0.23921569, 0.60784316)
+
+[sub_resource type="Gradient" id="Gradient_dlcsn"]
+offsets = PackedFloat32Array(0, 0.6, 1)
+colors = PackedColorArray(0.6, 0.75, 0.3, 1, 0.24, 0.29999998, 0.12, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q7igv"]
+gradient = SubResource("Gradient_dlcsn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7qqf4"]
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 120.0
+initial_velocity_max = 320.0
+gravity = Vector3(0, 500, 0)
+scale_min = 4.0
+scale_max = 9.0
+color_ramp = SubResource("GradientTexture1D_q7igv")
+
+[node name="ZombieBoar" type="CharacterBody2D" unique_id=600502477 groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_nq777")
+speed = 110.0
+hp = 40
+hp_max = 40
+atk = 15
+score = 3
+state = 2
+type = 2
+label = "หมูป่าซอมบี้"
+attack_range = 30.0
+chase_range = 360.0
+patrol_wait_time = 2.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=587424215]
+position = Vector2(0, -20)
+shape = SubResource("CapsuleShape2D_ugr2j")
+
+[node name="HitArea" type="Area2D" parent="." unique_id=1115411835 groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 11
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitArea" unique_id=2008793250]
+position = Vector2(0, -20)
+shape = SubResource("CapsuleShape2D_1lopf")
+
+[node name="DeathParticles" type="CPUParticles2D" parent="." unique_id=1072158612]
+z_index = 2
+position = Vector2(2.08165e-12, -33)
+scale = Vector2(1.5, 1.5)
+emitting = false
+amount = 20
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+emission_shape = 2
+emission_sphere_radius = 21.05
+direction = Vector2(0, -1)
+spread = 21.48
+gravity = Vector2(0, 400)
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+angular_velocity_min = 100.0
+angular_velocity_max = 100.0
+damping_min = 1.0
+damping_max = 1.0
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_min = 2.0
+scale_amount_max = 30.0
+scale_amount_curve = SubResource("Curve_yvw6o")
+color = Color(0.671534, 0.004919853, 0, 1)
+color_ramp = SubResource("Gradient_wxnld")
+
+[node name="DamageParticles" type="CPUParticles2D" parent="." unique_id=1561878630]
+z_index = 2
+position = Vector2(2.08165e-12, -33)
+scale = Vector2(1.5, 1.5)
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+emission_shape = 2
+emission_sphere_radius = 21.05
+direction = Vector2(0, -1)
+spread = 21.48
+gravity = Vector2(0, 400)
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+angular_velocity_min = 100.0
+angular_velocity_max = 100.0
+damping_min = 1.0
+damping_max = 1.0
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_min = 2.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_yvw6o")
+color = Color(0.67058825, 0.42352942, 0, 1)
+color_ramp = SubResource("Gradient_wxnld")
+
+[node name="Sprite" type="Node2D" parent="." unique_id=1445111960]
+
+[node name="Anim" type="AnimatedSprite2D" parent="Sprite" unique_id=1852913040]
+sprite_frames = ExtResource("2_owlwn")
+animation = &"walk"
+autoplay = "walk"
+offset = Vector2(0, -32)
+
+[node name="Ray" type="Node2D" parent="Sprite" unique_id=1415425330]
+
+[node name="playerRayBack" type="RayCast2D" parent="Sprite/Ray" unique_id=1255579585]
+position = Vector2(0, -20)
+target_position = Vector2(216, 0)
+collision_mask = 2
+
+[node name="playerRayFront" type="RayCast2D" parent="Sprite/Ray" unique_id=1480801001]
+position = Vector2(0, -20)
+target_position = Vector2(-360, 0)
+collision_mask = 2
+
+[node name="wallRay" type="RayCast2D" parent="Sprite/Ray" unique_id=807141594]
+position = Vector2(0, -20)
+target_position = Vector2(-30, 0)
+
+[node name="floorRay" type="RayCast2D" parent="Sprite/Ray" unique_id=1219665679]
+position = Vector2(-24, -16)
+target_position = Vector2(0, 30)
+
+[node name="DeathSfx" type="AudioStreamPlayer" parent="." unique_id=1907249660]
+stream = ExtResource("3_6wa6d")
+volume_db = -3.0
+bus = &"sfx"
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1256446627]
+offset_left = -26.0
+offset_top = -74.0
+offset_right = 26.0
+offset_bottom = -62.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_7cwx2")
+theme_override_font_sizes/font_size = 10
+value = 100.0
+
+[node name="Label" type="Label" parent="." unique_id=1552956948]
+custom_minimum_size = Vector2(80, 24)
+offset_left = -43.0
+offset_top = -100.0
+offset_right = 43.0
+offset_bottom = -76.0
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.9098039, 0.3019608, 0.3137255, 1)
+theme_override_constants/outline_size = 3
+text = "สัตว์ประหลาด"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Explosion" type="GPUParticles2D" parent="." unique_id=380116468]
+z_index = 3
+position = Vector2(0, -20)
+emitting = false
+amount = 32
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_7qqf4")
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

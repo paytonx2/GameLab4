@@ -1,0 +1,29 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Prefabs/LastKnight/mover.gd" id="1_8ifoe"]
+[ext_resource type="SpriteFrames" path="res://Assets/LastKnight/frames/saw_frames.tres" id="2_edi7b"]
+[ext_resource type="Script" path="res://Scenes/Prefabs/LastKnight/spin.gd" id="3_28qni"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dbvwh"]
+radius = 34.0
+
+[node name="TrapSaw" type="Node2D" unique_id=138511290]
+script = ExtResource("1_8ifoe")
+offset = Vector2(160, 0)
+duration = 1.4
+pause = 0.2
+
+[node name="Saw" type="StaticBody2D" parent="." unique_id=365412575 groups=["Traps"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Saw" unique_id=558889214]
+scale = Vector2(1.2, 1.2)
+sprite_frames = ExtResource("2_edi7b")
+animation = &"spin"
+autoplay = "spin"
+script = ExtResource("3_28qni")
+speed = 8.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saw" unique_id=1439332800]
+shape = SubResource("CircleShape2D_dbvwh")

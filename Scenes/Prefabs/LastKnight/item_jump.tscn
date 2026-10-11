@@ -1,0 +1,31 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Prefabs/LastKnight/pickup.gd" id="1_0byc6"]
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/props/potion_jump.png" id="2_wjprt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hr80v"]
+radius = 18.0
+
+[node name="Item_jump" type="Area2D" unique_id=76195934]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_0byc6")
+kind = "jump"
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1061538485]
+texture = ExtResource("2_wjprt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=113023327]
+shape = SubResource("CircleShape2D_hr80v")
+
+[node name="Sparkle" type="CPUParticles2D" parent="." unique_id=2088448548]
+amount = 10
+lifetime = 1.2
+emission_shape = 1
+emission_sphere_radius = 16.0
+gravity = Vector2(0, -20)
+scale_amount_min = 1.5
+scale_amount_max = 3.0
+color = Color(0.5, 1, 0.4, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

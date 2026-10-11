@@ -1,192 +1,88 @@
-# 2D Platformer Starter Kit
+# The Last Knight — อัศวินคนสุดท้าย
 
-This starter kit provides all the essential mechanics needed to build a complete 2D platformer game in Godot 4.7. It is designed as a hands-on learning resource for students taking the **Computer Game Development** course at the **College of Computing, Khon Kaen University**.
+เกม 2D Platformer Side-Scrolling สร้างด้วย **Godot 4.7**
+แบบฝึกหัดที่ 4 รายวิชา **Computer Game Development** วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น
 
-## Preview
+| รหัสนักศึกษา | ชื่อ-สกุล |
+|---|---|
+| 663380532-0 | นายภูวรินทร์ ไชยพิมูล |
 
-<img src="docs/qrcode.png" style="width:300px;" />
+## ภาพตัวอย่าง
 
-- [Game Preview](https://computingkku.github.io/2D-Platformer-Starter-Kit/)
+<img src="docs/demo1.jpg" width="300"> <img src="docs/demo2.jpg" width="300">
+<img src="docs/demo3.jpg" width="300"> <img src="docs/demo4.jpg" width="300">
 
+- ▶️ **Play Game:** https://YOUR-GITHUB-USERNAME.github.io/GameLab4/
+- 🎬 **Clip Demo VDO:** (ใส่ลิงก์ YouTube / Google Drive)
 
-## Features
+## เนื้อเรื่อง (Game Story)
 
-- **Game Menu** — A simple main menu scene (`Menu.tscn`) with Start and Exit options, so players can launch into the game or quit cleanly.
-- **Mobile & Web Design** — On-screen touch controls are included, allowing the game to be played on phones, tablets, and browsers without a keyboard.
-- **Platformer Controller** — Responsive horizontal movement and jumping with double jump support, configurable directly from the Godot Inspector.
-- **Weapon System** — Shoot fireball projectiles with physics-based bouncing and a configurable lifetime. Bullets can defeat enemies and add to the player's score.
-- **Enemy AI** — Enemies use a reusable state-driven AI base class with patrol, chase, attack, rest, damage, and death behaviors. They reverse direction when hitting walls or falling off ledges, detect the player with raycasts, and adapt their behavior by enemy type such as ping-pong, melee, ranged, defensive, and boss variants. Defensive and boss enemies can enter a low-health REST state to retreat and regenerate HP before resuming combat.
-- **Enemy Spawner** — A reusable spawner that generates enemies over time with configurable speed, respawn delay, and maximum instance limits.
-- **Animated Player** — Idle, walk, jump, and attack animations driven by state logic; sprite flips automatically based on movement direction.
-- **Particle Effects** — Running particle trails, death particles, and damage feedback (red flash) for juicier game feel.
-- **Damage & Health System** — Player takes damage on enemy contact with knockback and temporary invincibility frames. HP bar and life count are displayed in the UI.
-- **Save & Load** — Save and load game progress (position, score, lives, and settings) using JSON files.
-- **Sound & Music Toggle** — Persistent audio settings saved to a config file, with on-screen mute/unmute buttons.
-- **Score System** — Collect coins or defeat enemies to increase your score; UI updates in real time through the game manager.
-- **Demo Levels** — Two hand-crafted levels that introduce platformer design patterns and progressively challenge the player.
-- **Level Management** — Clean scene transitions between levels using an autoload transition manager.
-- **Beginner-Friendly Code** — Every script is documented and structured to be easy to read, modify, and extend.
+ณ อาณาจักรเอลโดเรีย **"มอร์ธัส"** อดีตแม่ทัพแห่งภาคีอัศวินรุ่งอรุณ ได้ทรยศและทำสัญญากับความตาย
+กลายเป็น **อัศวินเนโคร** ปลดปล่อยคำสาปแห่งราตรีนิรันดร์ ผู้คนกลายเป็นซอมบี้ สัตว์ป่าเน่าเปื่อยลุกขึ้นอาละวาด
+อัศวินทุกคนล้มลง... เหลือเพียง **"เอเรน"** อัศวินคนสุดท้าย ผู้ถือดาบแห่งรุ่งอรุณที่ปล่อยคลื่นแสงได้
+เขาต้องฝ่าผืนป่า สุสาน และบุกปราสาท เพื่อโค่นมอร์ธัสและนำแสงอรุณกลับคืนมา
 
-## Getting Started
+| ด่าน | ชื่อ | จุดเด่น |
+|---|---|---|
+| 1 | ชายป่าแห่งรุ่งอรุณ (Dawn Forest) | ด่านสอนเล่น หอกพุ่ง แท่นเลื่อน กระดานเด้ง |
+| 2 | ป่าสนยามพลบค่ำ (Twilight Woods) | ใบเลื่อย ลิฟต์ ประตูวาร์ป ยาเร่งความเร็ว |
+| 3 | สุสานต้องสาป (Cursed Graveyard) | หลุมศพเกิดซอมบี้ ลูกตุ้มหนาม กองไฟพ่นเปลว |
+| 4 | ปราสาทเนโครแมนเซอร์ (Necromancer's Keep) | ด่านกับดักรวม + **บอส อัศวินเนโคร มอร์ธัส** |
 
-1. Open the project in [Godot 4.7](https://godotengine.org/) or later.
-2. Press **F5** or click **Play** to run the main menu.
-3. Use **A/D** or **Left/Right** to move, **Space** to jump, and **X** to shoot.
-4. On mobile or web, use the on-screen buttons at the bottom of the screen.
-5. Collect coins, defeat enemies, avoid traps, and reach the door to finish each level.
+## วิธีเล่น
 
-## Project Structure
+| ปุ่ม | การกระทำ |
+|---|---|
+| A / D หรือ ← → | เดิน |
+| Space / W / ↑ | กระโดด (กดกลางอากาศอีกครั้ง = กระโดด 2 ชั้น) |
+| X | ฟันดาบ ปล่อยคลื่นแสง |
+| กระโดดเหยียบหัวศัตรู | กำจัดศัตรู (เด้งตัวขึ้น) |
+
+บนมือถือ / เว็บ ใช้ปุ่มบนหน้าจอได้
+
+## สิ่งที่พัฒนาเพิ่มจาก Starter Kit
+
+1. **เมนูใหม่** — ภาพพื้นหลัง, ปุ่มสไตล์ยุคกลาง, ปุ่มออกจากเกม (Exit), หน้าเนื้อเรื่อง, หน้าตั้งค่าเปิด/ปิดเสียง, หน้า Credit
+2. **ตัวละคร** — อัศวิน (Idle / Run / Jump / Fall / Attack / Dead) และศัตรู 3 ชนิด + บอส
+   - ซอมบี้ (เดินตรวจตรา ไล่ล่าเมื่อเห็นผู้เล่น)
+   - หมูป่าซอมบี้ (วิ่งเร็ว พุ่งชนแรง)
+   - แตนผี (บินได้ บินโฉบใส่ผู้เล่น)
+   - บอส อัศวินเนโคร (ยิงลูกพลังมืด, เรียกซอมบี้, ถอยไปฟื้นพลังเมื่อเลือดน้อย)
+3. **อาวุธ** — เปลี่ยนจากลูกไฟเป็นดาบที่ปล่อยคลื่นแสง (Sword Wave) + เหยียบหัวศัตรูได้ พร้อม GPUParticles2D ระเบิด
+4. **กับดัก** — หนาม, หอกพุ่งจากพื้น (สุ่มเวลา + AnimationPlayer เปิด/ปิด Collision), ลูกตุ้มหนามแกว่ง,
+   ใบเลื่อยเคลื่อนที่ (แนวนอน/แนวตั้ง), กองไฟพ่นเปลว — โดนแล้ว **พลังชีวิตลด** และกระเด็นถอยหลัง (ไม่ตายทันที)
+5. **วัตถุประกอบฉาก** — แท่นเลื่อน (Moving Platform), ลิฟต์ (Elevator), กระดานเด้ง (Jump Board), ประตูวาร์ป (Portal), ธงเช็คพอยต์
+6. **ไอเท็ม** — เหรียญ, เพชร (+5), หัวใจ (+30 HP), ชีวิตเพิ่ม (1UP), ยาเร่งความเร็ว, ยากระโดดสูง (10 วินาที)
+7. **ด่าน 4 ด่าน** — ใช้ TileSet ใหม่ (Legacy Fantasy - High Forest) พร้อม Collision Polygon และแผ่นไม้แบบ One-way
+8. **พื้นหลัง Parallax** — ท้องฟ้า + ภูเขา + ป่า 3 ชั้น เปลี่ยนบรรยากาศตามด่าน (กลางวัน → พลบค่ำ → กลางคืน → พระจันทร์สีเลือด)
+9. **Game Over / Victory** — ภาพประกอบ, เพลงประกอบ, สรุปคะแนน/เหรียญ/จำนวนศัตรูที่กำจัด, พลุฉลองเมื่อชนะ
+10. **เพลงและเสียง** — เพลงประกอบ 4 เพลง (เมนู, ป่า, สุสาน, บอส) + เสียง Effect ใหม่ทั้งหมด
+
+## โครงสร้างไฟล์ที่เพิ่ม
 
 ```
-Scenes/
-├── Actors/           # Player, enemies, and spawners
-├── Levels/           # Level scenes, base level template, and UI
-├── Managers/         # GameManager, SceneTransition, AudioManager
-└── Prefabs/          # Reusable objects (bullet, coin, potion, door, button)
-
-Assets/
-├── Fonts/            # Custom fonts
-├── Icons/            # UI icons
-├── Sound/            # BGM and SFX
-├── Spritesheet/      # Character and tile sprites
-└── Textures/         # Particle and effect textures
+Assets/LastKnight/        asset ที่สร้าง/ดัดแปลง (ตัวละคร, tiles, พื้นหลัง, props, ui, เพลง)
+Scenes/Actors/            zombie, zombie_boar, ghost_wasp, necro_knight (boss), zombie_grave
+Scenes/Prefabs/LastKnight กับดัก, แท่นเลื่อน, ลิฟต์, กระดานเด้ง, ประตูวาร์ป, เช็คพอยต์, ไอเท็ม
+Scenes/Levels/            level_01 - level_04, menu, story, credit, options, game_over, game_win
+tools/make_assets.py      สร้าง asset ทั้งหมดด้วย Python (Pillow + numpy)
+tools/make_levels.py      แผนที่ด่านแบบตัวอักษร -> tools/levels/*.txt
+tools/build_game.gd       สร้าง TileSet, Prefab และด่านใน Godot จากไฟล์แผนที่
+tools/playtest.tscn       บอทเดินทดสอบด่านอัตโนมัติ
 ```
 
-## Controls
+สร้างใหม่ทั้งหมด:
 
-| Input | Action |
-|-------|--------|
-| A / Left Arrow | Move left |
-| D / Right Arrow | Move right |
-| Space / S | Jump |
-| X | Shoot |
-| On-screen buttons | Mobile and web touch controls |
-
-## Inspector Tips
-
-- **Player**: Toggle `double_jump` to enable double jump. Adjust `move_speed`, `jump_force`, `shoot_cooldown_time`, and `bullet_lifetime` directly in the inspector.
-- **Enemy Spawner**: Configure `enemy_scenes`, `speed_range`, `respawn_time`, and `max_instance` to control enemy behavior and density.
-- **Bullet**: Adjust `speed` and `lifetime` to change projectile feel.
-
-## Developer & Contributor Guide
-
-This project is structured to be beginner-friendly, but it is also designed to scale into a more advanced prototype or classroom project. The goal is to keep gameplay logic readable while still supporting modular extension.
-
-### Core Architecture
-
-- **Player**: controlled in `Scenes/Actors/player.gd` and driven by movement, jumping, shooting, damage, and animation state.
-- **Enemy Base Class**: implemented in `Scenes/Actors/enemy.gd` and acts as the shared abstract AI controller for all enemies.
-- **Level Logic**: basic platformer scenes and gameplay flow are handled in `Scenes/Levels/`.
-- **Managers**: global systems such as game progression, scene transitions, and audio are kept in `Scenes/Managers/`.
-- **Prefabs**: reusable gameplay objects such as bullets, doors, coins, and pickups live in `Scenes/Prefabs/`.
-
-### Enemy AI Design
-
-The enemy system uses an abstract base class with multiple behaviors rather than a single hardcoded script. This keeps each enemy consistent while still allowing different archetypes.
-
-#### State Model
-
-Supported enemy states typically include:
-
-- `IDLE` — waits before acting
-- `WALK` — normal movement
-- `PATROL` — moves in a direction until a condition changes
-- `CHASE` — follows the player when nearby
-- `ATTACK` — performs attack behavior or contact damage
-- `REST` — defensive recovery state used when injured
-- `DAMAGED` — short reaction state after taking damage
-- `DEAD` — death and cleanup
-
-#### Type Model
-
-Enemy types are used to tune behavior patterns without rewriting the full AI flow:
-
-- `DUMMY` — weak or passive enemy
-- `PINGPONG` — reverses direction between limits or edges
-- `NEAR` — aggressive melee enemy that stays close to the player
-- `FAR` — attacks from a moderate distance or tracks with a slower rhythm
-- `DEFENSE` — defensive enemy that retreats and heals when low on HP
-- `BOSS` — stronger enemy with longer recovery and more advanced combat logic
-
-### Movement and Terrain Rules
-
-The base AI should handle the following rules consistently:
-
-- Move in the current `direction` value unless a state override is active.
-- Reverse when colliding with a wall or reaching an edge.
-- Keep logic separated from player-facing logic so wall-turn behavior is not overwritten by chase logic.
-- Respect ground collision and raycast checks for platform boundaries.
-- Prevent the enemy from turning back too aggressively when it is already in a valid chase or attack loop.
-
-### Restoration and Low-HP Recovery
-
-The `REST` state is important for defensive enemies and bosses:
-
-- If enemy type is `DEFENSE` or `BOSS`, low HP can trigger `REST`.
-- In `REST`, the enemy may retreat from the player instead of attacking directly.
-- The enemy regains HP over time using a configured regeneration rate.
-- Recovery ends when HP is restored above a threshold such as 60% of max HP.
-- While in `REST`, attack actions should be paused until recovery completes.
-
-### Extending the Enemy System
-
-To add a new enemy variation:
-
-1. Create a new scene based on the enemy base prefab or a shared enemy template.
-2. Extend the base enemy script or override only the behavior hooks you need.
-3. Set a compatible enemy type and state logic.
-4. Tune values such as speed, chase range, attack range, and HP in the Inspector.
-5. Test terrain turns, player detection, and damage flow on a small level before scaling up.
-
-### Good Contribution Practices
-
-- Keep scripts readable and modular.
-- Prefer clear English comments and function documentation for educational projects.
-- Separate movement logic from AI decision logic to avoid state conflicts.
-- Validate enemy collisions and raycast behavior on several platform layouts.
-- Avoid hardcoding values in multiple places; use exported variables where possible.
-- Test both idle and combat states before merging a change.
-
-### Suggested Workflow for Contributors
-
-1. Read the base enemy script before editing specialized enemies.
-2. Understand the state transition before changing attack or rest behavior.
-3. Add a small test scenario or level to validate edge cases.
-4. Verify that movement, wall-turning, and player detection still work together.
-5. Keep commits focused on one feature area at a time.
-
-### Documentation Style
-
-This repository is intended for learning. When editing scripts or documentation:
-
-- Write comments in clear English.
-- Explain the purpose of variables and functions.
-- Keep implementation detail practical and beginner-friendly.
-- Prefer concise naming and readable flow over clever but opaque code.
-
-### Contribution Notes
-
-This project is suitable for course assignments, classroom demos, and student projects. Contributions should remain approachable for learners while still demonstrating professional game design patterns.
-
-## Saving
-
-- Press the **Save** button in the top-right corner to save your progress.
-- The game saves the player's position, score, lives, and audio settings.
+```
+python tools/make_assets.py
+python tools/make_levels.py
+Godot --headless --path . res://tools/build_game.tscn
+```
 
 ## Credits
 
-**Original Developer**
-- [AdilDevStuff](https://github.com/AdilDevStuff) — [2D-Platformer-Starter-Kit](https://github.com/AdilDevStuff/2D-Platformer-Starter-Kit)
-
-**2D Assets**
-- [Kenney.nl](https://www.kenney.nl/)
-- [craftpix.net](https://craftpix.net/)
-- [Ravenmore](https://ravenmore.itch.io/)
-- [Icons8.com](https://icons8.com)
-
-**Sound Effects**
-- GDFXR (Sfxr plugin for Godot)
-
-**Modified for Educational Use By**
-- Wachirawut Thamviset
-- College of Computing, Khon Kaen University
+- 2D Platformer Starter Kit — ผศ.ดร.วชิราวุธ ธรรมวิเศษ ([computingkku](https://github.com/computingkku/2D-Platformer-Starter-Kit))
+- Pixel art "Legacy Fantasy - High Forest" — Anokolisa
+- Sound effects — [Kenney](https://kenney.nl)
+- Font Kodchasan — Cadson Demak
+- ซอมบี้ บอส กับดัก ไอเท็ม พื้นหลัง และเพลงประกอบ — ดัดแปลง/สร้างด้วย Python (`tools/make_assets.py`)

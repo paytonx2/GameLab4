@@ -1,0 +1,39 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Prefabs/LastKnight/checkpoint.gd" id="1_cecxf"]
+[ext_resource type="SpriteFrames" path="res://Assets/LastKnight/frames/checkpoint_frames.tres" id="2_8dieq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_teahi"]
+size = Vector2(40, 96)
+
+[node name="Checkpoint" type="Area2D" unique_id=1131447945]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_cecxf")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1243330551]
+position = Vector2(0, -48)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("2_8dieq")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1468449944]
+position = Vector2(0, -48)
+shape = SubResource("RectangleShape2D_teahi")
+
+[node name="Particles" type="CPUParticles2D" parent="." unique_id=1532977865]
+position = Vector2(0, -60)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 0.9
+spread = 180.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 80.0
+initial_velocity_max = 180.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+color = Color(1, 0.85, 0.3, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

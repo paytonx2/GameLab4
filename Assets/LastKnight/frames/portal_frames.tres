@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/props/portal.png" id="1_gp13c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqrkj"]
+atlas = ExtResource("1_gp13c")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvgc2"]
+atlas = ExtResource("1_gp13c")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lds6"]
+atlas = ExtResource("1_gp13c")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wiui"]
+atlas = ExtResource("1_gp13c")
+region = Rect2(240, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gp2a1"]
+atlas = ExtResource("1_gp13c")
+region = Rect2(320, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2wks"]
+atlas = ExtResource("1_gp13c")
+region = Rect2(400, 0, 80, 80)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqrkj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvgc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lds6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wiui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gp2a1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2wks")
+}],
+"loop": 1,
+"name": &"swirl",
+"speed": 10.0
+}]

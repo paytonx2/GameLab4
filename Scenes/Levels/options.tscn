@@ -3,13 +3,26 @@
 [ext_resource type="PackedScene" uid="uid://puc4l62gx6et" path="res://Scenes/Prefabs/button_exit.tscn" id="1_6oxap"]
 [ext_resource type="Theme" uid="uid://d3eng5cvycmjf" path="res://Scenes/Prefabs/theme.tres" id="2_wto1r"]
 
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/ui/story_bg.png" id="3_bg"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/options.gd" id="4_opt"]
+
 [node name="Node2D" type="Node2D" unique_id=1481218610]
+script = ExtResource("4_opt")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1200.0
+offset_bottom = 648.0
+texture = ExtResource("3_bg")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="btnExit" parent="." unique_id=1633606001 instance=ExtResource("1_6oxap")]
 offset_left = 48.0
 offset_top = 32.0
 offset_right = 174.0
 offset_bottom = 86.0
+text = "กลับ"
 
 [node name="Title" type="Label" parent="." unique_id=714304452]
 offset_left = 412.0
@@ -19,6 +32,43 @@ offset_bottom = 77.0
 theme = ExtResource("2_wto1r")
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 24
-text = "Game Options"
+text = "ตั้งค่าเกม"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Music" type="CheckButton" parent="."]
+offset_left = 450.0
+offset_top = 200.0
+offset_right = 750.0
+offset_bottom = 260.0
+theme = ExtResource("2_wto1r")
+theme_override_font_sizes/font_size = 24
+text = "เพลงประกอบ"
+
+[node name="Sound" type="CheckButton" parent="."]
+offset_left = 450.0
+offset_top = 280.0
+offset_right = 750.0
+offset_bottom = 340.0
+theme = ExtResource("2_wto1r")
+theme_override_font_sizes/font_size = 24
+text = "เสียงเอฟเฟกต์"
+
+[node name="Help" type="Label" parent="."]
+offset_left = 300.0
+offset_top = 380.0
+offset_right = 900.0
+offset_bottom = 600.0
+theme = ExtResource("2_wto1r")
+theme_override_constants/outline_size = 6
+theme_override_constants/line_spacing = -4
+theme_override_font_sizes/font_size = 18
+text = "วิธีเล่น
+A / D หรือ ← → : เดิน
+Space / W / ↑ : กระโดด (กดซ้ำกลางอากาศ = กระโดด 2 ชั้น)
+X : ฟันดาบ ปล่อยคลื่นแสง
+กระโดดเหยียบหัวศัตรูเพื่อกำจัด  |  ธงทอง = จุดเกิดใหม่"
+horizontal_alignment = 1
+
+[connection signal="toggled" from="Music" to="." method="_on_music_toggled"]
+[connection signal="toggled" from="Sound" to="." method="_on_sound_toggled"]

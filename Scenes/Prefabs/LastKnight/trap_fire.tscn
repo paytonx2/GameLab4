@@ -1,0 +1,55 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Prefabs/LastKnight/fire_trap.gd" id="1_e7cjy"]
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/props/brazier.png" id="2_mfomj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncuup"]
+size = Vector2(28, 120)
+
+[sub_resource type="Gradient" id="Gradient_as3yb"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(1, 1, 0.6, 1, 1, 0.55, 0.1, 1, 0.8, 0.1, 0.05, 0.6, 0.2, 0.2, 0.2, 0)
+
+[node name="TrapFire" type="StaticBody2D" unique_id=2054274069 groups=["Traps"]]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_e7cjy")
+
+[node name="Brazier" type="Sprite2D" parent="." unique_id=364221671]
+position = Vector2(0, -12)
+texture = ExtResource("2_mfomj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=237054036]
+position = Vector2(0, -84)
+shape = SubResource("RectangleShape2D_ncuup")
+disabled = true
+
+[node name="Flame" type="CPUParticles2D" parent="." unique_id=2118677063]
+position = Vector2(0, -24)
+emitting = false
+amount = 70
+lifetime = 0.6
+emission_shape = 3
+emission_rect_extents = Vector2(12, 2)
+direction = Vector2(0, -1)
+spread = 6.0
+gravity = Vector2(0, -60)
+initial_velocity_min = 180.0
+initial_velocity_max = 260.0
+scale_amount_min = 6.0
+scale_amount_max = 12.0
+color_ramp = SubResource("Gradient_as3yb")
+
+[node name="Warn" type="CPUParticles2D" parent="." unique_id=1957615277]
+position = Vector2(0, -24)
+emitting = false
+amount = 10
+lifetime = 0.4
+direction = Vector2(0, -1)
+spread = 25.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 80.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(1, 0.6, 0.2, 1)

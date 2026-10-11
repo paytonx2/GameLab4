@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/props/slash.png" id="1_sjv7m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_167yc"]
+atlas = ExtResource("1_sjv7m")
+region = Rect2(0, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3aek7"]
+atlas = ExtResource("1_sjv7m")
+region = Rect2(64, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ma6le"]
+atlas = ExtResource("1_sjv7m")
+region = Rect2(128, 0, 64, 80)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_167yc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3aek7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ma6le")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 14.0
+}]

@@ -1,0 +1,29 @@
+title=บทที่ 4 : ปราสาทเนโครแมนเซอร์
+subtitle=Necromancer's Keep
+theme=cursed
+bg=4
+music=music_boss
+label=1;8;ปราสาทของเนโครแมนเซอร์
+จบคำสาปนี้ให้ได้!
+label=84;3;ลานต่อสู้สุดท้าย
+map:
+                 BBBBBBBBBBBBBBBBBBBBBBBBBBBB                                                BB                                                     BB
+                 BBBBBBBBBBBBBBBBBBBBBBBBBBBB                                                BB                                                     BB
+                 BBBBBBBBBBBBBBBBBBBBBBBBBBBB                                                BB                                                     BB
+                 BBBBBBBBBBBBBBBBBBBBBBBBBBBB                                                BB                                                     BB
+                        O          O                                                         BB                                                     BB
+                                                                                             BB                                                     BB
+                                                                                             BB                                                     BB
+                                                                        c  z   c  L          BB                                                     BB
+                                                         g s g         BBBBBBBBBBM           BB                                           h         BB
+                                                        ======         BBBBBBBBBB       C  h                    ======                  ======      BB
+                                                                       BBBBBBBBBB      BBBBBB         h                                             BB
+                      c   c   c Y c   c                                BBBBBBBBBB      BBBBBB       ======                  ======                  BB
+        c c c                                M      C  z  h   f   z Jb BBBBBBBBBB      BBBBBB                                                       BB
+                                                   BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB      BBBBBB                                                       BB
+  P   n   n   r    S  S  S  F   ^^^  F  S  S       BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB      BBBBBB    n  r                   K                       D   BB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB      BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB      BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB      BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB      BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB~~~~~~BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB~~~~~~BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBwwwwwwBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBwwwwwwBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBwwwwwwBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBwwwwwwBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB

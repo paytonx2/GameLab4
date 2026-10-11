@@ -1,0 +1,59 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/props/chain.png" id="1_sts1l"]
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/props/spike_ball.png" id="2_0d0au"]
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/props/anchor.png" id="3_p1wnm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0eogm"]
+radius = 26.0
+
+[sub_resource type="Animation" id="Animation_21tmd"]
+length = 1.6
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [-1.15, 1.15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b53qk"]
+_data = {
+&"swing": SubResource("Animation_21tmd")
+}
+
+[node name="TrapPendulum" type="Node2D" unique_id=1624140894]
+
+[node name="Arm" type="Node2D" parent="." unique_id=374178655]
+
+[node name="Chain" type="Sprite2D" parent="Arm" unique_id=1234208028]
+texture_repeat = 2
+position = Vector2(0, 105)
+texture = ExtResource("1_sts1l")
+region_enabled = true
+region_rect = Rect2(0, 0, 12, 210)
+
+[node name="Ball" type="StaticBody2D" parent="Arm" unique_id=1150460814 groups=["Traps"]]
+position = Vector2(0, 210)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Arm/Ball" unique_id=775465360]
+texture = ExtResource("2_0d0au")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arm/Ball" unique_id=870942499]
+shape = SubResource("CircleShape2D_0eogm")
+
+[node name="Anchor" type="Sprite2D" parent="." unique_id=480593839]
+position = Vector2(0, 6)
+texture = ExtResource("3_p1wnm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1514385197]
+libraries/ = SubResource("AnimationLibrary_b53qk")
+autoplay = &"swing"

@@ -1,0 +1,32 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Prefabs/LastKnight/pickup.gd" id="1_1hrgr"]
+[ext_resource type="SpriteFrames" path="res://Assets/LastKnight/frames/coin_frames.tres" id="2_laom2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d3x8a"]
+radius = 14.0
+
+[node name="Item_coin" type="Area2D" unique_id=1324773204]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_1hrgr")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1443419183]
+sprite_frames = ExtResource("2_laom2")
+animation = &"spin"
+autoplay = "spin"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1305115174]
+shape = SubResource("CircleShape2D_d3x8a")
+
+[node name="Sparkle" type="CPUParticles2D" parent="." unique_id=1591692415]
+amount = 6
+lifetime = 1.2
+emission_shape = 1
+emission_sphere_radius = 16.0
+gravity = Vector2(0, -20)
+scale_amount_min = 1.5
+scale_amount_max = 3.0
+color = Color(1, 0.85, 0.3, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

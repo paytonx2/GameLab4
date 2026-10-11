@@ -2,25 +2,29 @@ class_name Player
 extends CharacterBody2D
 
 signal hit_enemy
-signal hit_trap 
+signal hit_trap
 
 
 # --------- VARIABLES ---------- #
 
 @export_category("Player Properties") # You can tweak these changes according to your likings
 @export var move_speed : float = 300
-@export var jump_force : float = 650
+@export var jump_force : float = 700
 @export var gravity : float = 30
 @export var max_jump_count : int = 2
 @export var bullet_scene : PackedScene
-@export var shoot_cooldown_time : float = 0.2
-@export var bullet_lifetime = 2.0
+@export var shoot_cooldown_time : float = 0.35
+@export var bullet_lifetime = 0.45
+@export var trap_damage : int = 15
+@export var stomp_damage : int = 40
+## Falling below this Y kills the player (set by the level from the map size)
+@export var fall_limit : float = 3000
 
 var jump_count : int = 2
 var flip_x = false
 
 @export_category("Toggle Functions") # Double jump feature is disable by default (Can be toggled from inspector)
-@export var double_jump : = false
+@export var double_jump : = true
 
 var is_grounded : bool = false
 var movement_enabled : bool = true
@@ -28,12 +32,13 @@ var spawn_point = Vector2(0,0)
 var is_attacking = false
 var shoot_cooldown_timer = 0.0
 var can_damage = true
+var is_dead = false
 
-@onready var player_sprite : AnimationPlayer = $student/AnimationPlayer
-@onready var player_node = $student
+@onready var knight : AnimatedSprite2D = $Knight
 @onready var bullet_marker = $BulletMarker
 @onready var particle_trails = $ParticleTrails
 @onready var death_particles = $DeathParticles
+@onready var boost_particles = $BoostParticles
 
 
 
@@ -43,12 +48,15 @@ func _ready() -> void:
 	if GameManager.save_player_position.x != 0:
 		global_position =  GameManager.save_player_position
 		GameManager.save_player_position = Vector2.ZERO
-	player_sprite.animation_finished.connect(_on_animation_finished)
-	
+	knight.animation_finished.connect(_on_animation_finished)
+
 func _physics_process(_delta):
 	is_grounded = is_on_floor()
 	movement()
+	_check_stomp()
 	_handle_enemy_contact()
+	if global_position.y > fall_limit and movement_enabled:
+		GameManager.death()
 
 func _process(_delta):
 	player_animations()
@@ -56,8 +64,15 @@ func _process(_delta):
 	handle_shooting()
 	if shoot_cooldown_timer > 0:
 		shoot_cooldown_timer -= _delta
-	
+	boost_particles.emitting = GameManager.speed_boost_time > 0 or GameManager.jump_boost_time > 0
+
 # --------- CUSTOM FUNCTIONS ---------- #
+
+func current_speed() -> float:
+	return move_speed * (1.5 if GameManager.speed_boost_time > 0 else 1.0)
+
+func current_jump() -> float:
+	return jump_force * (1.3 if GameManager.jump_boost_time > 0 else 1.0)
 
 # <-- Player Movement Code -->
 func movement():
@@ -69,20 +84,19 @@ func movement():
 		if abs(velocity.x)>0.5:
 			velocity.x *= 0.6
 		else:
-			velocity.x =0 
-	
+			velocity.x =0
+
 	handle_jumping()
-	
+
 	# Move Player
 	if movement_enabled:
 		if Input.is_action_pressed("Left"):
-			velocity.x = -move_speed
+			velocity.x = -current_speed()
 			flip_x = true
 		if Input.is_action_pressed("Right"):
-			velocity.x = move_speed
+			velocity.x = current_speed()
 			flip_x = false
-	if velocity.y > 5000:
-		hit_trap.emit()
+	velocity.y = min(velocity.y, 1400)
 	move_and_slide()
 
 # Handles jumping functionality (double jump or single jump, can be toggled from inspector)
@@ -97,43 +111,54 @@ func handle_jumping():
 # Player jump
 func jump():
 	jump_tween()
-	AudioManager.jump_sfx.play()
-	velocity.y = -jump_force
+	AudioManager.play("jump", 0.1)
+	velocity.y = -current_jump()
+
+# Called by jump boards (springs)
+func bounce(force: float):
+	velocity.y = -force
+	jump_count = max_jump_count - 1
+	AudioManager.play("jump_high")
 
 # Handle Player Animations
 func player_animations():
 	particle_trails.emitting = false
-	if is_attacking:
+	if is_dead or is_attacking:
 		return
-	
+
 	if is_on_floor():
 		if abs(velocity.x) > 0:
 			particle_trails.emitting = true
-			player_sprite.current_animation = "Walk"
+			knight.play("run")
 		else:
-			player_sprite.current_animation = "Idle"
+			knight.play("idle")
 	else:
-		player_sprite.current_animation = "Jump"
+		knight.play("jump" if velocity.y < 0 else "fall")
 
 
 # Flip player sprite based on X velocity
 func flip_player():
-	if flip_x: 
-		player_node.scale.x = -1
-	else:
-		player_node.scale.x = 1
+	knight.flip_h = flip_x
+	bullet_marker.position.x = -abs(bullet_marker.position.x) if flip_x else abs(bullet_marker.position.x)
 
 # Tween Animations
-func death_tween():
-	AudioManager.death_sfx.play()
-	death_particles.emitting = true
+func death_tween(game_over := false):
+	is_dead = true
 	movement_enabled = false
+	velocity = Vector2.ZERO
+	AudioManager.death_sfx.play()
+	knight.play("dead")
+	await get_tree().create_timer(1.0).timeout
+	if game_over:
+		return
+	death_particles.emitting = true
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2.ZERO, 0.15)
-	tween.parallel().tween_property(self, "position", Vector2(position.x,position.y-100), 0.15)
 	await tween.finished
 	global_position = spawn_point
+	velocity = Vector2.ZERO
 	await get_tree().create_timer(0.3).timeout
+	is_dead = false
 	movement_enabled = true
 	AudioManager.respawn_sfx.play()
 	respawn_tween()
@@ -141,69 +166,110 @@ func death_tween():
 func respawn_tween():
 	var tween = create_tween()
 	tween.stop(); tween.play()
-	tween.tween_property(self, "scale", Vector2.ONE, 0.15) 
+	tween.tween_property(self, "scale", Vector2.ONE, 0.15)
 	tween.parallel().tween_property(self, "position", spawn_point, 0.15)
+	damage_tween()
 
 func jump_tween():
 	var tween = create_tween()
-	tween.tween_property(self, "scale", Vector2(0.7, 1.4), 0.1)
-	tween.tween_property(self, "scale", Vector2(1.0,1.0), 0.1)
+	tween.tween_property(knight, "scale", Vector2(0.8, 1.2), 0.1)
+	tween.tween_property(knight, "scale", Vector2(1.0,1.0), 0.1)
 
 func damage_tween():
-	var tween = create_tween() 
+	var tween = create_tween()
 	tween.stop(); tween.play()
 	can_damage = false
-	for i in range(1,10):
-		tween.tween_property(player_node , "modulate", Color.RED, 0.1)
-		tween.tween_property(player_node , "modulate", Color.WHITE, 0.1)
+	for i in range(1,8):
+		tween.tween_property(knight , "modulate", Color(1,0.3,0.3,0.6), 0.1)
+		tween.tween_property(knight , "modulate", Color.WHITE, 0.1)
 	await tween.finished
 	can_damage = true
 
+# Called by GameManager.damage()
+func hurt_feedback():
+	AudioManager.play("hurt")
+	var cam = $Camera2D
+	var tween = create_tween()
+	for i in 4:
+		tween.tween_property(cam, "offset", Vector2(randf_range(-6,6), randf_range(-6,6)), 0.03)
+	tween.tween_property(cam, "offset", Vector2.ZERO, 0.03)
+
 func _handle_enemy_contact() -> void:
-	if !can_damage:
+	if !can_damage or is_dead:
 		return
 	var bodies = $Collision.get_overlapping_bodies()
 	for body in bodies:
 		if body != null:
 			_on_collision_body_entered(body)
-			
-func _apply_enemy_damage(body) -> void:
-	var dx = body.position.x - position.x
+			if !can_damage:
+				return
+
+func _knockback_from(pos: Vector2) -> void:
 	velocity.y = -400
-	if dx > 0:
-		velocity.x = -300
-	else:
-		velocity.x = 300
+	velocity.x = -300 if pos.x > global_position.x else 300
+
+func _apply_enemy_damage(body) -> void:
+	_knockback_from(body.global_position)
 	damage_tween()
+	GameManager.damage(body.atk if "atk" in body else 10)
 	hit_enemy.emit()
+
+# Jump on top of a monster to defeat it (Mario style)
+func _check_stomp() -> void:
+	if is_dead:
+		return
+	for i in get_slide_collision_count():
+		var col = get_slide_collision(i)
+		var body = col.get_collider()
+		if body is Enemy and body.alive and col.get_normal().y < -0.6:
+			body.take_damage(stomp_damage, global_position.x)
+			if body.has_method("stomp_effect"):
+				body.stomp_effect()
+			velocity.y = -550
+			jump_count = max_jump_count - 1
+			AudioManager.play("stomp")
+			can_damage = false
+			get_tree().create_timer(0.25).timeout.connect(func(): can_damage = true)
+			return
+
 # --------- SIGNALS ---------- #
 
-# Reset the player's position to the current level spawn point if collided with any trap
+# Traps no longer kill instantly: they hurt and push the knight back
 func _on_collision_body_entered(body):
 	if body.is_in_group("Traps"):
+		_knockback_from(body.global_position)
+		damage_tween()
+		GameManager.damage(trap_damage)
 		hit_trap.emit()
-	if body.is_in_group("Enemy") and can_damage:
+	elif body.is_in_group("Bullet_Enemy"):
+		_knockback_from(body.global_position)
+		damage_tween()
+		GameManager.damage(15)
+		body.queue_free()
+	elif body.is_in_group("Enemy") and can_damage:
+		if body is Enemy and not body.alive:
+			return
 		_apply_enemy_damage(body)
 
 func handle_shooting():
 	if Input.is_action_just_pressed("Shoot") and movement_enabled and shoot_cooldown_timer <= 0:
 		shoot()
 
+# Sword attack: plays the slash animation and releases a short-range sword wave
 func shoot():
 	if bullet_scene == null:
 		return
 	is_attacking = true
-	player_sprite.play("Attack")
+	knight.play("attack")
+	AudioManager.play("slash", 0.15)
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = bullet_marker.global_position
-	var angle = deg_to_rad(randf_range(0, 20))
-	var sign_x = 1.0 if player_node.scale.x > 0 else -1.0
-	var dir = Vector2(cos(angle) * sign_x, -sin(angle))
+	var dir = Vector2(-1.0 if flip_x else 1.0, 0)
 	get_parent().add_child(bullet)
-	bullet.shoot(dir, 600, bullet_lifetime)
+	bullet.shoot(dir, 900, bullet_lifetime)
 	shoot_cooldown_timer = shoot_cooldown_time
 
-func _on_animation_finished(anim_name: String) -> void:
-	if anim_name == "Attack":
+func _on_animation_finished() -> void:
+	if knight.animation == "attack":
 		is_attacking = false
-	
+

@@ -1,0 +1,65 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Prefabs/LastKnight/spear_trap.gd" id="1_52uuj"]
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/props/spear.png" id="2_vo45j"]
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/props/spear_base.png" id="3_i62qt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4stbf"]
+size = Vector2(10, 80)
+
+[sub_resource type="Animation" id="Animation_vlf66"]
+length = 1.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpearBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.4, 1.3, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(0, 80), Vector2(0, 0), Vector2(0, 0), Vector2(0, 96)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpearBody/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dhpjj"]
+_data = {
+&"push": SubResource("Animation_vlf66")
+}
+
+[node name="TrapSpear" type="Node2D" unique_id=700760727]
+script = ExtResource("1_52uuj")
+
+[node name="SpearBody" type="StaticBody2D" parent="." unique_id=2065199170 groups=["Traps"]]
+z_index = -1
+position = Vector2(0, 96)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="SpearBody" unique_id=655959632]
+position = Vector2(0, -48)
+texture = ExtResource("2_vo45j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpearBody" unique_id=2092038128]
+position = Vector2(0, -44)
+shape = SubResource("RectangleShape2D_4stbf")
+disabled = true
+
+[node name="Base" type="Sprite2D" parent="." unique_id=1315817743]
+position = Vector2(0, -6)
+texture = ExtResource("3_i62qt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1123114585]
+libraries/ = SubResource("AnimationLibrary_dhpjj")

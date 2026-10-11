@@ -1,0 +1,44 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/props/spring.png" id="1_uxdms"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nllgu"]
+atlas = ExtResource("1_uxdms")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg5q8"]
+atlas = ExtResource("1_uxdms")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vylol"]
+atlas = ExtResource("1_uxdms")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xemm6"]
+atlas = ExtResource("1_uxdms")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nllgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg5q8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vylol")
+}],
+"loop": 0,
+"name": &"boing",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xemm6")
+}],
+"loop": 0,
+"name": &"idle",
+"speed": 1.0
+}]

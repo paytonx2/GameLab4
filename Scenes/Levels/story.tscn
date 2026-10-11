@@ -1,0 +1,61 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Levels/story.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/ui/story_bg.png" id="2_bg"]
+[ext_resource type="SpriteFrames" path="res://Assets/LastKnight/frames/knight_frames.tres" id="3_k"]
+[ext_resource type="AudioStream" path="res://Assets/LastKnight/audio/music_menu.wav" id="4_m"]
+
+[node name="Story" type="Node2D"]
+script = ExtResource("1_s")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1200.0
+offset_bottom = 648.0
+mouse_filter = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Knight" type="AnimatedSprite2D" parent="."]
+position = Vector2(150, 560)
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_k")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(0, -72)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 300.0
+offset_top = 30.0
+offset_right = 1160.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(1, 0.86, 0.45, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "ตำนานอัศวินคนสุดท้าย"
+
+[node name="Text" type="Label" parent="."]
+offset_left = 300.0
+offset_top = 110.0
+offset_right = 1170.0
+offset_bottom = 560.0
+theme_override_colors/font_color = Color(0.95, 0.93, 0.88, 1)
+theme_override_constants/outline_size = 6
+theme_override_constants/line_spacing = 6
+theme_override_font_sizes/font_size = 21
+autowrap_mode = 3
+
+[node name="Hint" type="Label" parent="."]
+offset_left = 800.0
+offset_top = 600.0
+offset_right = 1180.0
+offset_bottom = 630.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+theme_override_font_sizes/font_size = 15
+text = "กดปุ่มใดก็ได้เพื่อข้าม ▶"
+horizontal_alignment = 2
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_m")
+autoplay = true
+bus = &"music"

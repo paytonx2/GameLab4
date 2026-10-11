@@ -1,0 +1,86 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/LastKnight/characters/zombie_boar.png" id="1_ok74p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ftcc"]
+atlas = ExtResource("1_ok74p")
+region = Rect2(0, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyvs5"]
+atlas = ExtResource("1_ok74p")
+region = Rect2(96, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14qq8"]
+atlas = ExtResource("1_ok74p")
+region = Rect2(192, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m24yy"]
+atlas = ExtResource("1_ok74p")
+region = Rect2(288, 64, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iev47"]
+atlas = ExtResource("1_ok74p")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggidm"]
+atlas = ExtResource("1_ok74p")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8tyl"]
+atlas = ExtResource("1_ok74p")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbmxn"]
+atlas = ExtResource("1_ok74p")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtbkg"]
+atlas = ExtResource("1_ok74p")
+region = Rect2(384, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux6iu"]
+atlas = ExtResource("1_ok74p")
+region = Rect2(480, 0, 96, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ftcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyvs5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14qq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m24yy")
+}],
+"loop": 0,
+"name": &"hurt",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iev47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggidm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8tyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbmxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtbkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux6iu")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 12.0
+}]
