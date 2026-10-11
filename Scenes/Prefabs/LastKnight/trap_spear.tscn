@@ -39,27 +39,27 @@ _data = {
 &"push": SubResource("Animation_vlf66")
 }
 
-[node name="TrapSpear" type="Node2D" unique_id=700760727]
+[node name="TrapSpear" type="Node2D" unique_id=1521258144]
 script = ExtResource("1_52uuj")
 
-[node name="SpearBody" type="StaticBody2D" parent="." unique_id=2065199170 groups=["Traps"]]
+[node name="SpearBody" type="StaticBody2D" parent="." unique_id=167271428 groups=["Traps"]]
 z_index = -1
 position = Vector2(0, 96)
 collision_layer = 8
 collision_mask = 0
 
-[node name="Sprite" type="Sprite2D" parent="SpearBody" unique_id=655959632]
+[node name="Sprite" type="Sprite2D" parent="SpearBody" unique_id=1550112379]
 position = Vector2(0, -48)
 texture = ExtResource("2_vo45j")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpearBody" unique_id=2092038128]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpearBody" unique_id=479929462]
 position = Vector2(0, -44)
 shape = SubResource("RectangleShape2D_4stbf")
 disabled = true
 
-[node name="Base" type="Sprite2D" parent="." unique_id=1315817743]
+[node name="Base" type="Sprite2D" parent="." unique_id=1250250279]
 position = Vector2(0, -6)
 texture = ExtResource("3_i62qt")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1123114585]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=166162562]
 libraries/ = SubResource("AnimationLibrary_dhpjj")

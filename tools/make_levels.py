@@ -82,19 +82,16 @@ def level1():
     g.ground(0, 18, 15)
     g.put(2, 14, "t  P   u   r  t")
     g.put(8, 12, "c c c")
-    g.label(1, 9, "A / D = เดิน     Space = กระโดด\n(กดกลางอากาศอีกครั้ง = กระโดด 2 ชั้น)")
     g.water(19, 22)
     # first zombie
     g.ground(23, 42, 15)
     g.put(24, 14, "m  t    z    ^^ R t")
-    g.label(25, 9, "X = ฟันดาบปล่อยคลื่นพลัง\nหรือกระโดดเหยียบหัวซอมบี้!")
     g.put(27, 12, "c c")
     # climb up
     g.ground(43, 57, 13)
     g.row(46, 50, 9, "=")
     g.put(48, 8, "g")
     g.put(44, 12, "c c  u S  S t")
-    g.label(44, 5, "ระวังหอกที่พุ่งขึ้นจากพื้น")
     # moving platform over a gap
     g.water(58, 64, 17)
     g.put(58, 12, "M")
@@ -104,14 +101,12 @@ def level1():
     # jump pad up to a high ledge
     g.ground(87, 99, 10)
     g.put(84, 13, "J")
-    g.label(80, 8, "กระดานเด้ง!")
     g.put(88, 9, "c c c  ^^  c  L")
     g.water(100, 103, 17)
     # final stretch
     g.ground(104, 131, 15)
     g.put(104, 14, "t  z    r   m  z   u  t   D")
     g.put(111, 11, "c c c")
-    g.label(118, 9, "เข้าประตูเพื่อไปด่านต่อไป")
     return g
 
 
@@ -132,13 +127,11 @@ def level2():
     g.put(52, 12, "X")
     g.put(62, 12, "X")
     g.put(56, 10, "c c c")
-    g.label(48, 7, "ใบเลื่อยเหล็กกลิ้งไปมา จังหวะให้ดี!")
     # elevator up the cliff
     g.ground(71, 74, 15)
     g.put(72, 14, "V")
     g.ground(75, 96, 7)
     g.put(76, 6, "s  t   z   c c c  u t")
-    g.label(66, 3, "ยาสีฟ้า = วิ่งเร็วขึ้น 10 วินาที")
     # long jump over a valley with moving platforms
     g.water(97, 112, 17)
     g.put(98, 7, "M")
@@ -152,7 +145,6 @@ def level2():
     g.put(134, 14, "2")
     g.put(136, 14, "h  z  m  E  ^^  z  t D")
     g.put(150, 11, "c c c")
-    g.label(117, 6, "ประตูวาร์ปพาข้ามกำแพงหิน")
     return g
 
 
@@ -161,7 +153,6 @@ def level3():
     g.ground(0, 18, 15)
     g.put(2, 14, "P  d  k  o  n    k")
     g.put(9, 12, "c c c")
-    g.label(1, 8, "สุสานต้องสาป... ซอมบี้คลานขึ้นมาจากหลุมศพ")
     g.ground(19, 40, 15)
     g.put(20, 14, "o  E   k   F     d   z  o")
     g.put(24, 11, "f")
@@ -172,7 +163,6 @@ def level3():
     g.ground(41, 66, 0, bottom=4)
     g.put(46, 5, "O       O       O")
     g.put(42, 14, "C   c c   c c   c c   k  j")
-    g.label(43, 8, "ลูกตุ้มหนามแกว่ง หลบให้พ้น!")
     # jump potion -> high ledges
     g.ground(67, 70, 15)
     g.ground(71, 80, 10)
@@ -200,7 +190,6 @@ def level4():
     g = Grid(150)
     g.ground(0, 16, 15, "B")
     g.put(2, 14, "P   n   n   r")
-    g.label(1, 8, "ปราสาทของเนโครแมนเซอร์\nจบคำสาปนี้ให้ได้!")
     g.put(8, 12, "c c c")
     # trap gauntlet
     g.ground(17, 44, 15, "B")
@@ -224,7 +213,6 @@ def level4():
     g.put(81, 8, "M")
     g.ground(87, 92, 10, "B")
     g.put(88, 9, "C  h")
-    g.label(84, 3, "ลานต่อสู้สุดท้าย")
     # boss arena (walls on both sides)
     g.ground(93, 149, 15, "B")
     g.ground(93, 94, 0, "B", bottom=8)

@@ -1,25 +1,24 @@
 [gd_scene format=3 uid="uid://b6tvaxw54wsq0"]
 
 [ext_resource type="Script" uid="uid://tkynu7pd01lh" path="res://Scenes/Levels/menu.gd" id="1_hq2ph"]
-[ext_resource type="Texture2D" path="res://Assets/LastKnight/ui/menu_bg.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://cxaon4rfudk7r" path="res://Assets/LastKnight/ui/menu_bg.png" id="2_bg"]
 [ext_resource type="Texture2D" uid="uid://1ay25i0wdihg" path="res://Assets/Icons/cpkku_dark.png" id="3_logo"]
-[ext_resource type="AudioStream" path="res://Assets/LastKnight/audio/music_menu.wav" id="4_music"]
+[ext_resource type="AudioStream" uid="uid://ba2osvylkl3o1" path="res://Assets/LastKnight/audio/music_menu.wav" id="4_music"]
 
 [sub_resource type="Gradient" id="Gradient_fog"]
-offsets = PackedFloat32Array(0, 1)
 colors = PackedColorArray(1, 0.4, 0.4, 0.5, 1, 0.4, 0.4, 0)
 
-[node name="Menu" type="Node2D"]
+[node name="Menu" type="Node2D" unique_id=1611965874]
 script = ExtResource("1_hq2ph")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=28638728]
 offset_right = 1200.0
 offset_bottom = 648.0
 texture = ExtResource("2_bg")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Embers" type="CPUParticles2D" parent="."]
+[node name="Embers" type="CPUParticles2D" parent="." unique_id=466820481]
 position = Vector2(600, 660)
 amount = 40
 lifetime = 6.0
@@ -35,13 +34,13 @@ scale_amount_min = 2.0
 scale_amount_max = 4.0
 color_ramp = SubResource("Gradient_fog")
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=1588459215]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1200.0
 offset_bottom = 648.0
 
-[node name="Title" type="Label" parent="UI"]
+[node name="Title" type="Label" parent="UI" unique_id=1537022619]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -52,17 +51,17 @@ offset_right = 400.0
 offset_bottom = 140.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.86, 0.45, 1)
-theme_override_colors/font_outline_color = Color(0.5, 0.05, 0.1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
-theme_override_constants/outline_size = 18
+theme_override_colors/font_outline_color = Color(0.5, 0.05, 0.1, 1)
 theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 18
 theme_override_font_sizes/font_size = 76
 text = "THE LAST KNIGHT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Subtitle" type="Label" parent="UI"]
+[node name="Subtitle" type="Label" parent="UI" unique_id=463604443]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -78,7 +77,7 @@ theme_override_font_sizes/font_size = 24
 text = "อัศวินคนสุดท้าย ปะทะ กองทัพซอมบี้"
 horizontal_alignment = 1
 
-[node name="Buttons" type="VBoxContainer" parent="UI"]
+[node name="Buttons" type="VBoxContainer" parent="UI" unique_id=227301938]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -90,33 +89,33 @@ offset_bottom = 520.0
 grow_horizontal = 2
 theme_override_constants/separation = 10
 
-[node name="btnStart" type="Button" parent="UI/Buttons"]
+[node name="btnStart" type="Button" parent="UI/Buttons" unique_id=1731968443]
 custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 text = "เริ่มการผจญภัย"
 
-[node name="btnContinue" type="Button" parent="UI/Buttons"]
+[node name="btnContinue" type="Button" parent="UI/Buttons" unique_id=803615947]
 custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 disabled = true
 text = "เล่นต่อ"
 
-[node name="btnOption" type="Button" parent="UI/Buttons"]
+[node name="btnOption" type="Button" parent="UI/Buttons" unique_id=80922794]
 custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 text = "ตั้งค่า"
 
-[node name="btnCredit" type="Button" parent="UI/Buttons"]
+[node name="btnCredit" type="Button" parent="UI/Buttons" unique_id=1867880115]
 custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 text = "ผู้จัดทำ"
 
-[node name="btnExit" type="Button" parent="UI/Buttons"]
+[node name="btnExit" type="Button" parent="UI/Buttons" unique_id=1578708476]
 custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 text = "ออกจากเกม"
 
-[node name="Footer" type="Label" parent="UI"]
+[node name="Footer" type="Label" parent="UI" unique_id=920618064]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 612.0
@@ -126,12 +125,12 @@ theme_override_colors/font_color = Color(0.85, 0.8, 0.8, 0.8)
 theme_override_font_sizes/font_size = 14
 text = "663380532-0  นายภูวรินทร์ ไชยพิมูล  |  Computer Game Development, KKU"
 
-[node name="CpkkuDark" type="Sprite2D" parent="."]
+[node name="CpkkuDark" type="Sprite2D" parent="." unique_id=1750882559]
 position = Vector2(1110, 618)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("3_logo")
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=363011264]
 stream = ExtResource("4_music")
 autoplay = true
 bus = &"music"

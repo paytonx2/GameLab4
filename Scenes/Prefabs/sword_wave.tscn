@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_fv0rn"]
 radius = 20.0
 
-[node name="SwordWave" type="RigidBody2D" unique_id=1704792060 groups=["Bullet"]]
+[node name="SwordWave" type="RigidBody2D" unique_id=1891641895 groups=["Bullet"]]
 collision_layer = 2
 gravity_scale = 0.0
 lock_rotation = true
@@ -14,14 +14,14 @@ contact_monitor = true
 max_contacts_reported = 2
 script = ExtResource("1_kntwf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1742498194]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=259755363]
 shape = SubResource("CircleShape2D_fv0rn")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1851826057]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1177593620]
 scale = Vector2(1.2, 1.2)
 sprite_frames = ExtResource("2_bb24o")
 
-[node name="Trail" type="CPUParticles2D" parent="." unique_id=1077712587]
+[node name="Trail" type="CPUParticles2D" parent="." unique_id=1509820701]
 amount = 12
 lifetime = 0.3
 emission_shape = 3

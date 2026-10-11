@@ -6,23 +6,23 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f4msn"]
 size = Vector2(36, 90)
 
-[node name="Portal" type="Area2D" unique_id=605863334]
+[node name="Portal" type="Area2D" unique_id=680962018]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_x4wy6")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=198943632]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=146281101]
 position = Vector2(0, -60)
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("2_devba")
 animation = &"swirl"
 autoplay = "swirl"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1782912393]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1628720677]
 position = Vector2(0, -50)
 shape = SubResource("RectangleShape2D_f4msn")
 
-[node name="Particles" type="CPUParticles2D" parent="." unique_id=209431078]
+[node name="Particles" type="CPUParticles2D" parent="." unique_id=164949626]
 position = Vector2(0, -60)
 amount = 24
 emission_shape = 1

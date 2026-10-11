@@ -6,19 +6,19 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_r5b8c"]
 radius = 18.0
 
-[node name="Item_life" type="Area2D" unique_id=851756150]
+[node name="Item_life" type="Area2D" unique_id=1485929122]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_5k1xp")
 kind = "life"
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=697882904]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1758766874]
 texture = ExtResource("2_ssggj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=264619515]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1480574530]
 shape = SubResource("CircleShape2D_r5b8c")
 
-[node name="Sparkle" type="CPUParticles2D" parent="." unique_id=610626109]
+[node name="Sparkle" type="CPUParticles2D" parent="." unique_id=845021369]
 amount = 10
 lifetime = 1.2
 emission_shape = 1

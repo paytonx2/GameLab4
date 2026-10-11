@@ -7,17 +7,17 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_pa146"]
 radius = 34.0
 
-[node name="TrapSaw" type="Node2D" unique_id=804996405]
+[node name="TrapSaw" type="Node2D" unique_id=818166576]
 script = ExtResource("1_eg2xu")
 offset = Vector2(0, -110)
 duration = 1.4
 pause = 0.2
 
-[node name="Saw" type="StaticBody2D" parent="." unique_id=1386044507 groups=["Traps"]]
+[node name="Saw" type="StaticBody2D" parent="." unique_id=125696912 groups=["Traps"]]
 collision_layer = 8
 collision_mask = 0
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Saw" unique_id=142427626]
+[node name="Sprite" type="AnimatedSprite2D" parent="Saw" unique_id=586094131]
 scale = Vector2(1.2, 1.2)
 sprite_frames = ExtResource("2_cjg8r")
 animation = &"spin"
@@ -25,5 +25,5 @@ autoplay = "spin"
 script = ExtResource("3_5j31x")
 speed = 8.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Saw" unique_id=112116403]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saw" unique_id=762487750]
 shape = SubResource("CircleShape2D_pa146")

@@ -3,9 +3,6 @@ subtitle=Twilight Woods
 theme=forest
 bg=2
 music=music_forest
-label=48;7;ใบเลื่อยเหล็กกลิ้งไปมา จังหวะให้ดี!
-label=66;3;ยาสีฟ้า = วิ่งเร็วขึ้น 10 วินาที
-label=117;6;ประตูวาร์ปพาข้ามกำแพงหิน
 map:
 
 

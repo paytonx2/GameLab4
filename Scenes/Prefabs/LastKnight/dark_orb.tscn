@@ -9,20 +9,20 @@ radius = 14.0
 [sub_resource type="Gradient" id="Gradient_8kk3f"]
 colors = PackedColorArray(0.8, 0.3, 1, 0.9, 0.2, 0, 0.4, 0)
 
-[node name="DarkOrb" type="Area2D" unique_id=1552924540]
+[node name="DarkOrb" type="Area2D" unique_id=374226426]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_b4xnm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1216485897]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=884658734]
 shape = SubResource("CircleShape2D_wfxp1")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=509433019]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=378022915]
 modulate = Color(0.75, 0.3, 1, 1)
 scale = Vector2(0.12, 0.12)
 texture = ExtResource("2_gxr0r")
 
-[node name="Trail" type="CPUParticles2D" parent="." unique_id=551090832]
+[node name="Trail" type="CPUParticles2D" parent="." unique_id=1171849929]
 amount = 20
 lifetime = 0.5
 gravity = Vector2(0, 0)

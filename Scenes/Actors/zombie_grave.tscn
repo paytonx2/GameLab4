@@ -18,11 +18,11 @@ autostart = true
 position = Vector2(0, -19)
 texture = ExtResource("3_v60q4")
 
-[node name="Tomb" type="Sprite2D" parent="." unique_id=1044367180]
+[node name="Tomb" type="Sprite2D" parent="." unique_id=2102989659]
 texture = ExtResource("4_ho4un")
 offset = Vector2(0, -26)
 
-[node name="Miasma" type="CPUParticles2D" parent="." unique_id=1866074370]
+[node name="Miasma" type="CPUParticles2D" parent="." unique_id=2012008738]
 amount = 6
 lifetime = 1.2
 emission_shape = 3

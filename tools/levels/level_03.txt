@@ -3,8 +3,6 @@ subtitle=Cursed Graveyard
 theme=cursed
 bg=3
 music=music_cursed
-label=1;8;สุสานต้องสาป... ซอมบี้คลานขึ้นมาจากหลุมศพ
-label=43;8;ลูกตุ้มหนามแกว่ง หลบให้พ้น!
 map:
                                          ##########################
                                          ##########################

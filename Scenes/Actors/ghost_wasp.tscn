@@ -124,7 +124,7 @@ color_ramp = SubResource("Gradient_wxnld")
 
 [node name="Sprite" type="Node2D" parent="." unique_id=1445111960]
 
-[node name="Anim" type="AnimatedSprite2D" parent="Sprite" unique_id=1087688735]
+[node name="Anim" type="AnimatedSprite2D" parent="Sprite" unique_id=840634244]
 modulate = Color(1, 1, 1, 0.9)
 sprite_frames = ExtResource("2_7ek28")
 animation = &"walk"
@@ -175,7 +175,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Explosion" type="GPUParticles2D" parent="." unique_id=372338821]
+[node name="Explosion" type="GPUParticles2D" parent="." unique_id=594676607]
 z_index = 3
 emitting = false
 amount = 32

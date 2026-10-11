@@ -6,19 +6,19 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_l6ywi"]
 radius = 18.0
 
-[node name="Item_heart" type="Area2D" unique_id=1400275991]
+[node name="Item_heart" type="Area2D" unique_id=1376812183]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_exd6e")
 kind = "heart"
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=1458200337]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=613700676]
 texture = ExtResource("2_ge33o")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1183491485]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1944355966]
 shape = SubResource("CircleShape2D_l6ywi")
 
-[node name="Sparkle" type="CPUParticles2D" parent="." unique_id=1466681522]
+[node name="Sparkle" type="CPUParticles2D" parent="." unique_id=1815927732]
 amount = 10
 lifetime = 1.2
 emission_shape = 1

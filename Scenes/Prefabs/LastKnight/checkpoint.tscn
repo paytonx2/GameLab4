@@ -6,23 +6,23 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_teahi"]
 size = Vector2(40, 96)
 
-[node name="Checkpoint" type="Area2D" unique_id=1131447945]
+[node name="Checkpoint" type="Area2D" unique_id=1462621863]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_cecxf")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1243330551]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=446842480]
 position = Vector2(0, -48)
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("2_8dieq")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1468449944]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1407774553]
 position = Vector2(0, -48)
 shape = SubResource("RectangleShape2D_teahi")
 
-[node name="Particles" type="CPUParticles2D" parent="." unique_id=1532977865]
+[node name="Particles" type="CPUParticles2D" parent="." unique_id=1285215762]
 position = Vector2(0, -60)
 emitting = false
 amount = 30

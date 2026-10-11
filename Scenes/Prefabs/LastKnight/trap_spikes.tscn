@@ -5,14 +5,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksl5x"]
 size = Vector2(26, 12)
 
-[node name="TrapSpikes" type="StaticBody2D" unique_id=672577743 groups=["Traps"]]
+[node name="TrapSpikes" type="StaticBody2D" unique_id=60525603 groups=["Traps"]]
 collision_layer = 8
 collision_mask = 0
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=955786826]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1554697176]
 texture = ExtResource("1_eg1hi")
 offset = Vector2(0, -10)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1815140837]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1305969275]
 position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_ksl5x")
